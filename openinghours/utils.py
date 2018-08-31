@@ -52,7 +52,7 @@ def is_open(company_slug, now=None):
         now = get_now()
     print ("isOpen", now, now.isoweekday())
     
-    if hasClosingRuleForNow(companySlug):
+    if has_closing_rule_for_now(companySlug):
         print("hasNoClosingRule")
         return False
         
