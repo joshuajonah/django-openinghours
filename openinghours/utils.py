@@ -53,10 +53,10 @@ def isOpen(companySlug, now=None):
     '''
     if now is None:
         now = getnow()
-    print "isOpen", now, now.isoweekday()
+    print ("isOpen", now, now.isoweekday())
     
     if hasClosingRuleForNow(companySlug):
-        print "hasNoClosingRule"
+        print("hasNoClosingRule")
         return False
         
     nowTime = datetime.time(now.hour, now.minute, now.second)
@@ -78,7 +78,7 @@ def isOpen(companySlug, now=None):
         # start and end are not on the same day and we test on the end day
         if (oh.weekday == (now.isoweekday()-1)%7 and oh.fromHour >= nowTime and oh.toHour >= nowTime and oh.toHour < oh.fromHour):
             is_open = oh
-            #print " 'Special' case after midnight", oh
+            #print(" 'Special' case after midnight", oh)
         
         if is_open is not False:
             return oh

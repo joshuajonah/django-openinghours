@@ -2,7 +2,6 @@ import datetime
 
 from django import template
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_unicode 
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
@@ -123,16 +122,19 @@ def companyOpeningHoursList(companySlug=None, concise=False):
             else:
                 current_set['day_names'].append(day['name'])
         concise_days.append(current_set)
+        print(concise_days)
 
         for day_set in concise_days:
             if len(day_set['day_names']) > 2:
                 day_set['day_names'] = '%s to %s' % (day_set['day_names'][0], day_set['day_names'][-1])
             elif len(day_set['day_names']) > 1:
                 day_set['day_names'] = '%s and %s' % (day_set['day_names'][0], day_set['day_names'][-1])
+            else:
+                day_set['day_names'] = '%s' % day_set['day_names'][0]
         
         days = concise_days
 
     t = template.loader.get_template(template_name)
-    return t.render(template.Context({
+    return t.render({
         'days': days
-    }))
+    })
