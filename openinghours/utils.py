@@ -49,7 +49,7 @@ def is_open(company_slug, now=None):
     This method is used as stand alone and helper.
     '''
     if now is None:
-        now = getnow()
+        now = get_now()
     print ("isOpen", now, now.isoweekday())
     
     if hasClosingRuleForNow(companySlug):
